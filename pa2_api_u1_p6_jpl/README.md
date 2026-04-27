@@ -18,46 +18,46 @@ Este contexto mantiene **una única instancia durante toda la ejecución de la a
 
 ### Ejemplo 1: Contador Global de Usuarios
 Cada vez que se registra un usuario, el contador aumenta globalmente.
-
+```java
 contador.incrementar(); 
 contador.incrementar(); 
-
+```
 ### Ejemplo 2: Contador de productos vendidos
 Se aumenta el valor para incrementar la cantidad de ventas realizadas
-
+```java
 venta.incrementar(); 
 venta.incrementar(); 
-
+```
 ### Ejemplo 3: Contador de accesos al sistema
 El valor incrementa con cada acceso hecho dentro del sistema
-
+```java
 acceso.incrementar();
 acceso.incrementar(); 
-
+```
 ### Ejemplo 4: Contador de pedidos procesados
 Mantener registrado cuantos pedidos fueron realizados
-
+```java
 pedido.incrementar();
 pedido.incrementar(); 
-
+```
 ### Ejemplo 5: Contador de logs generados
 Útil para métricas globales
-
+```java
 log.incrementar(); 
 log.incrementar(); 
-
+```
 ### Ejemplo 6: Contador de conexiones activas
 Utilizado para que todos puedan visualizar un mismo número
-
+```java
 conexion.incrementar(); 
 conexion.incrementar(); 
-
+```
 ### Ejemplo 7: Contador de operaciones realizadas
 Método de ejemplo para evaluar la persistencia durante la operacion
-
+```java
 operacion.incrementar();
 operacion.incrementar();
-
+```
 ---
 
 ## Dependant
@@ -66,40 +66,40 @@ Este contexto **crea una nueva instancia cada vez que se inyecta**, por lo que e
 
 ### Ejemplo 1: Contador temporal de sesión
 El contador incrementa dentro de la misma instancia temporal.
-
+```java
 temp.incrementar();
 temp.incrementar(); 
-
+```
 ### Ejemplo 2: Contador de prueba
 Se crea una nueva instancia y el contador comienza desde cero.
-
+```java
 test.incrementar();
-
+```
 ### Ejemplo 3: Contador de cálculo temporal
 Cada nueva inyección no es capaz de guardar el estado entre usos.
-
+```java
 calc.incrementar();
-
+```
 ### Ejemplo 4: Contador de validaciones
 Cada inyeccion crea un nuevo objeto dentro de cada operación
-
+```java
 val.incrementar();
-
+```
 ### Ejemplo 5: Contador de procesos cortos
 Dentro de la misma instancia, el contador funciona normalmente.
-
+```java
 proc.incrementar();
-
+```
 ### Ejemplo 6: Contador de tareas individuales
 Cada vez que se inyecta, se genera un nuevo ciclo de ejecución.
-
+```java
 task.incrementar(); 
-
+```
 ### Ejemplo 7: Contador de ejecuciones
 El valor no se conserva entre diferentes usos o clases.
-
+```java
 exec.incrementar();
-
+```
 ---
 
 ## Singleton
@@ -108,40 +108,41 @@ Este contexto garantiza una **única instancia global en toda la aplicación**, 
 
 ### Ejemplo 1: Generador único de IDs
 El contador incrementa en una única instancia global, por lo que nunca se duplica.
-
+```java
 id.generar(); 
 id.generar(); 
-
+```
 ### Ejemplo 2: Contador de sistema
 Todos los componentes comparten el mismo estado global.
-
+```java
 sys.incrementar(); 
 sys.incrementar(); 
-
+```
 ### Ejemplo 3: Controlador de recursos
 Se utiliza la misma instancia en otra clase y el valor continúa.
-
+```java
 recurso.incrementar();
-
+```
 ### Ejemplo 4: Registro de eventos
 El valor se mantiene durante toda la ejecución del sistema.
-
+```java
 evento.incrementar(); 
 evento.incrementar(); 
-
+```
 ### Ejemplo 5: Contador de errores
 Puede utilizarser para mantener un estado único global
-
+```java
 error.incrementar(); 
 error.incrementar(); 
-
+```
 ### Ejemplo 6: Monitor del sistema
 Las llamadas siguen acumulando el valor sin reinicio.
-
+```java
 monitor.incrementar();
-
+```
 ### Ejemplo 7: Control de sesiones activas
 El valor incrementado en la instancia es compartido en toda la app
-
+```java
 sesion.incrementar(); 
 sesion.incrementar(); 
+```
