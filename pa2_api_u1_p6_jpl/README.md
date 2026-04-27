@@ -1,54 +1,147 @@
 # pa2_api_u1_p6_jpl
+# Proyecto Quarkus - Ambitos y Contextos CDI en Consola
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Este proyecto demuestra el comportamiento de los contextos de CDI en Quarkus utilizando una aplicación de consola.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+Se implementa una lógica simple basada en generación de valores (contador), con el objetivo de observar cómo cada contexto maneja el estado y las instancias.
 
-## Running the application in dev mode
+Contextos utilizados:
+- ApplicationScoped
+- Dependent
+- Singleton
 
-You can run your application in dev mode that enables live coding using:
+---
 
-```shell script
-./mvnw quarkus:dev
-```
+## ApplicationScoped
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+Este contexto mantiene **una única instancia durante toda la ejecución de la aplicación**, por lo que el estado se comparte globalmente.
 
-## Packaging and running the application
+### Ejemplo 1: Contador Global de Usuarios
+Cada vez que se registra un usuario, el contador aumenta globalmente.
 
-The application can be packaged using:
+contador.incrementar(); 
+contador.incrementar(); 
 
-```shell script
-./mvnw package
-```
+### Ejemplo 2: Contador de productos vendidos
+Se aumenta el valor para incrementar la cantidad de ventas realizadas
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+venta.incrementar(); 
+venta.incrementar(); 
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+### Ejemplo 3: Contador de accesos al sistema
+El valor incrementa con cada acceso hecho dentro del sistema
 
-If you want to build an _über-jar_, execute the following command:
+acceso.incrementar();
+acceso.incrementar(); 
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
+### Ejemplo 4: Contador de pedidos procesados
+Mantener registrado cuantos pedidos fueron realizados
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+pedido.incrementar();
+pedido.incrementar(); 
 
-## Creating a native executable
+### Ejemplo 5: Contador de logs generados
+Útil para métricas globales
 
-You can create a native executable using:
+log.incrementar(); 
+log.incrementar(); 
 
-```shell script
-./mvnw package -Dnative
-```
+### Ejemplo 6: Contador de conexiones activas
+Utilizado para que todos puedan visualizar un mismo número
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+conexion.incrementar(); 
+conexion.incrementar(); 
 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
+### Ejemplo 7: Contador de operaciones realizadas
+Método de ejemplo para evaluar la persistencia durante la operacion
 
-You can then execute your native executable with: `./target/pa2_api_u1_p6_jpl-1.0.0-SNAPSHOT-runner`
+operacion.incrementar();
+operacion.incrementar();
 
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
+---
+
+## Dependant
+
+Este contexto **crea una nueva instancia cada vez que se inyecta**, por lo que el estado no se comparte.
+
+### Ejemplo 1: Contador temporal de sesión
+El contador incrementa dentro de la misma instancia temporal.
+
+temp.incrementar();
+temp.incrementar(); 
+
+### Ejemplo 2: Contador de prueba
+Se crea una nueva instancia y el contador comienza desde cero.
+
+test.incrementar();
+
+### Ejemplo 3: Contador de cálculo temporal
+Cada nueva inyección no es capaz de guardar el estado entre usos.
+
+calc.incrementar();
+
+### Ejemplo 4: Contador de validaciones
+Cada inyeccion crea un nuevo objeto dentro de cada operación
+
+val.incrementar();
+
+### Ejemplo 5: Contador de procesos cortos
+Dentro de la misma instancia, el contador funciona normalmente.
+
+proc.incrementar();
+
+### Ejemplo 6: Contador de tareas individuales
+Cada vez que se inyecta, se genera un nuevo ciclo de ejecución.
+
+task.incrementar(); 
+
+### Ejemplo 7: Contador de ejecuciones
+El valor no se conserva entre diferentes usos o clases.
+
+exec.incrementar();
+
+---
+
+## Singleton
+
+Este contexto garantiza una **única instancia global en toda la aplicación**, compartiendo estado en todos los puntos donde se utilice.
+
+### Ejemplo 1: Generador único de IDs
+El contador incrementa en una única instancia global, por lo que nunca se duplica.
+
+id.generar(); 
+id.generar(); 
+
+### Ejemplo 2: Contador de sistema
+Todos los componentes comparten el mismo estado global.
+
+sys.incrementar(); 
+sys.incrementar(); 
+
+### Ejemplo 3: Controlador de recursos
+Se utiliza la misma instancia en otra clase y el valor continúa.
+
+recurso.incrementar();
+
+### Ejemplo 4: Registro de eventos
+El valor se mantiene durante toda la ejecución del sistema.
+
+evento.incrementar(); 
+evento.incrementar(); 
+
+### Ejemplo 5: Contador de errores
+Puede utilizarser para mantener un estado único global
+
+error.incrementar(); 
+error.incrementar(); 
+
+### Ejemplo 6: Monitor del sistema
+Las llamadas siguen acumulando el valor sin reinicio.
+
+monitor.incrementar();
+
+### Ejemplo 7: Control de sesiones activas
+El valor incrementado en la instancia es compartido en toda la app
+
+sesion.incrementar(); 
+sesion.incrementar(); 
